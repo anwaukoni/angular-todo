@@ -20,7 +20,17 @@ import {Component} from "@angular/core";
 
       </nav>
     <div class="jumbotron col-sm-9">
-      where content will be
+      <div >
+        <form class="form" (submit)=addTask();>
+            <input type="text"  class="text-center col-sm-12" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task" />
+            <textarea class="col-sm-12" placeholder="Say more about your task" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; background-color:rgba(230,230, 230, 0.2); color[placeholder]:white; margin-bottom:1em;">
+            </textarea>
+            <div class="col-sm-12 text-center">
+              <input type="submit" class="text-center btn btn-success" style="padding-right:5em; padding-left:5em; "/>
+            </div>
+        </form>
+      </div>
+
     </div>
 
     <footer class="text-center">
@@ -36,20 +46,24 @@ import {Component} from "@angular/core";
 })
 
 export class AppComponent {
+  addTask(){
+
+
+  }
   lists = [{
-    "title":"list one",
-    "tasks": [],
-    date: "today's date"
+    "title":"Task 1",
+    "description":"Make Pudding",
+    "date": "today's date"
   },
   {
-    "title":"list two",
-    "tasks": [],
-    date: "today's date"
+    "title":"Task 2",
+    "description":"Make Pudding",
+    "date": "today's date"
   },
   {
-    "title":"list three",
-    "tasks": [],
-    date: "today's date"
+    "title":"Task 3",
+    "description":"Make Pudding",
+    "date": "today's date"
   }];
 
 }
