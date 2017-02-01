@@ -12,23 +12,25 @@ import {Component} from "@angular/core";
       </h1>
     </header>
       <nav class="navbar navbar-inverse col-sm-3 todoListNav">
-        <ul>
-          <li *ngFor="let list of lists">
-            {{list.title}}
+        <ul class="list-group" style="margin-top:1em">
+          <li class="list-group-item" *ngFor="let list of lists; let i = index"
+          (click)= "deleteTask(i)">
+            {{list}}
           </li>
         </ul>
 
       </nav>
     <div class="jumbotron col-sm-9">
       <div >
-        <form class="form" (submit)=addTask(Task.value);>
-            <input type="text"  class="text-center col-sm-12" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task" #Task/>
+      <input #task type="text"  class="text-center col-sm-12" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task" #Task/>
+      <button (click)="addTask(task.value)" class="text-center btn btn-success" style="padding-right:5em; padding-left:5em; ">Submit</button>
+        <!--form class="form" (submit)=addTask(Task.value);>
             <textarea class="col-sm-12" placeholder="Say more about your task" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; background-color:rgba(230,230, 230, 0.2); color[placeholder]:white; margin-bottom:1em;">
             </textarea>
             <div class="col-sm-12 text-center">
               <input type="submit" class="text-center btn btn-success" style="padding-right:5em; padding-left:5em; "/>
             </div>
-        </form>
+        </form-->
       </div>
 
     </div>
@@ -46,23 +48,34 @@ import {Component} from "@angular/core";
 })
 
 export class AppComponent {
-  lists = [{
-    "title":"Task 1",
-    "description":"Make Pudding",
-    "date": "today's date"
-  },
-  {
-    "title":"Task 2",
-    "description":"Make Pudding",
-    "date": "today's date"
-  },
-  {
-    "title":"Task 3",
-    "description":"Make Pudding",
-    "date": "today's date"
-  }];
-  addTask(task){
+
+  lists= ["Task1","Task2","Task3"];
+  addTask(task: string){
+    if(task){
+      this.lists.push(task)
+    }
     console.log(task);
   }
 
+  deleteTask(index){
+    this.lists.splice(index,1);
+  }
+
 }
+
+
+// lists = [{
+//   "title":"Task 1",
+//   "description":"Make Pudding",
+//   "date": "today's date"
+// },
+// {
+//   "title":"Task 2",
+//   "description":"Make Pudding",
+//   "date": "today's date"
+// },
+// {
+//   "title":"Task 3",
+//   "description":"Make Pudding",
+//   "date": "today's date"
+// }];
