@@ -13,8 +13,10 @@ import {Component} from "@angular/core";
     </header>
       <nav class="navbar navbar-inverse col-sm-3 todoListNav" [class.invisible]="listEmpty()">
         <ul class="list-group" style="margin-top:1em">
-          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index">
+          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index"  >
             {{list}}
+            <input type="text"  [(ngModel)]="myModel" #editedTask="ngModel"/>
+            <span (click)="updateTask(editedTask.value)">Update </span>
             <span (click)= "deleteTask(i)" style="float:right"> X </span>
           </li>
         </ul>
@@ -68,6 +70,12 @@ export class AppComponent {
 
   listEmpty(){
     return !this.lists.length;
+  }
+
+  updateTask (task){
+      console.log(task);
+    }
+
   }
 
 }
