@@ -6,6 +6,17 @@ import {Task} from "./task";
 
   selector: "my-app",
   template: `
+<!--
+  <app-header-layout has-scrolling-region>
+   <app-header fixed>
+     <app-toolbar>
+       <div title spacer>All heroes</div>
+     </app-toolbar>
+   </app-header>
+   <div>My application content</div>
+ </app-header-layout>
+-->
+
     <header class="navbar">
       <h1  class="navbar-header">
         Our Todo List!
@@ -30,7 +41,7 @@ import {Task} from "./task";
       </nav>
     <div class="jumbotron col-sm-9">
       <div >
-      <input #task type="text"  class="text-center col-sm-12" style="color: white; background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task"/>
+      <paper-input #task type="text"  class="text-center col-sm-12" style="color: white; background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task"></paper-input>
       <button (click)="addTask(task.value)" class="text-center btn btn-success" style="padding-right:5em; padding-left:5em; ">Add</button>
         <!--form class="form" (submit)=addTask(Task.value);>
             <textarea class="col-sm-12" placeholder="Say more about your task" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; background-color:rgba(230,230, 230, 0.2); color[placeholder]:white; margin-bottom:1em;">
@@ -53,6 +64,9 @@ import {Task} from "./task";
     .jumbotron{box-shadow : 0 5px 0 rgba(230, 230, 230, 0.6); }
     .todoListNav{margin:0 0 0 0;}
     .invisible{opacity:0;}
+    app-toolbar {
+      background: var(--primary-color);
+      color: var(--dark-theme-text-color);
     `]
 })
 
