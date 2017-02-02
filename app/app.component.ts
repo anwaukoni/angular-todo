@@ -15,8 +15,10 @@ import {Component} from "@angular/core";
         <ul class="list-group" style="margin-top:1em">
           <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index"  >
             {{list}}
-            <input type="text"  [(ngModel)]="myModel" #editedTask="ngModel"/>
-            <span (click)="updateTask(editedTask.value)">Update </span>
+            <div *ngIf="showBox">
+            <input  type="text"  [(ngModel)]="myModel" #editedTask="ngModel" placeholder="{{list}}" />
+            </div>
+            <span (click)="showEditbox(i)">Update </span>   <!-- updateTask(editedTask.value, i) -->
             <span (click)= "deleteTask(i)" style="float:right"> X </span>
           </li>
         </ul>
@@ -54,13 +56,13 @@ export class AppComponent {
 
   lists= ["Task1","Task2","Task3"];
 
+  showBox:boolean=false;
+
   addTask(task: string){
+    console.log(task);
     if(task){
       this.lists.push(task)
     }
-
-
-
     console.log(task);
   }
 
@@ -72,14 +74,23 @@ export class AppComponent {
     return !this.lists.length;
   }
 
-  updateTask (task){
-      console.log(task);
+  showEditbox(index:number){
+      if(this.showBox){
+        this.showBox = false;
+      }else{
+        this.showBox = true;
+      }
+    return this.showBox;
+  }
+
+  updateTask (task, index){
+      console.log(task,this.lists[index]);
+      if(task){
+        this.lists[index] = task;
+      }
     }
 
   }
-
-}
-
 
 // lists = [{
 //   "title":"Task 1",
