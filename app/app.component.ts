@@ -12,14 +12,18 @@ import {Task} from "./task";
       </h1>
     </header>
       <nav class="navbar navbar-inverse col-sm-3 todoListNav" [class.invisible]="listEmpty()">
-        <ul class="list-group" style="margin-top:1em">
-          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index">
-            {{list.title}}
-            <div *ngIf="list.showBox">
-            <input  type="text" #editedTask="ngModel" [(ngModel)]="list.title" />
+        <ul class="list-group" style="margin-top:1em; overflow:hidden;">
+          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index" style="position:relative;">
+            <span *ngIf="!list.showBox">{{list.title}}</span>
+            <span *ngIf="list.showBox">.</span>
+            <div *ngIf="list.showBox" style="position:absolute; left:0px; bottom:8px; ">
+            <input  type="text" #editedTask="ngModel" [(ngModel)]="list.title" style="max-width:90%; margin-left:0.3em; width:108%; z-index:9999 !important;"/>
+
             </div>
-            <span (click)="showEditbox(i)">Update </span>   <!-- updateTask(editedTask.value, i) -->
-            <span (click)= "deleteTask(i)" style="float:right"> X </span>
+            <span (click)= "deleteTask(i)" class="glyphicon glyphicon-trash" style="float:right "> </span>
+            <span (click)="showEditbox(i)" *ngIf="showEditbox(i)" class="glyphicon glyphicon-pencil" style="float:right; margin-right:0.5em; z-index:999 !important;"></span>
+            <span (click)= "showEditbox(i)" *ngIf="showEditbox(i)" class="glyphicon glyphicon-ok" style="float:right; margin-right:0.5em; z-index:999 !important;"> </span>  <!-- updateTask(editedTask.value, i) -->
+
           </li>
         </ul>
 
