@@ -41,7 +41,7 @@ import {Task} from "./task";
       </nav>
     <div class="jumbotron col-sm-9">
       <div >
-      <paper-input #task type="text"  class="text-center col-sm-12" style="color: white; background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" placeholder="New Task"></paper-input>
+      <paper-input #task type="text"  class="text-center col-sm-12" style="color: white; background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; margin-bottom:15px;" label="New Task"></paper-input>
       <button (click)="addTask(task.value)" class="text-center btn btn-success" style="padding-right:5em; padding-left:5em; ">Add</button>
         <!--form class="form" (submit)=addTask(Task.value);>
             <textarea class="col-sm-12" placeholder="Say more about your task" style="background-color:transparent; border-width:0 0 1px 0; padding: 0.5em; background-color:rgba(230,230, 230, 0.2); color[placeholder]:white; margin-bottom:1em;">
@@ -67,6 +67,10 @@ import {Task} from "./task";
     app-toolbar {
       background: var(--primary-color);
       color: var(--dark-theme-text-color);
+    }
+    paper-input{
+      color: #fff;
+    }
     `]
 })
 
