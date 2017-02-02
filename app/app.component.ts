@@ -1,5 +1,5 @@
 import {Component} from "@angular/core";
-
+import {Task} from "./task";
 
 
 @Component ({
@@ -14,9 +14,9 @@ import {Component} from "@angular/core";
       <nav class="navbar navbar-inverse col-sm-3 todoListNav" [class.invisible]="listEmpty()">
         <ul class="list-group" style="margin-top:1em">
           <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index"  >
-            {{list}}
+            {{list.title}}
             <div *ngIf="showBox">
-            <input  type="text"  [(ngModel)]="myModel" #editedTask="ngModel" placeholder="{{list}}" />
+            <input  type="text"  [(ngModel)]="myModel" #editedTask="ngModel" placeholder="{{list.title}}" />
             </div>
             <span (click)="showEditbox(i)">Update </span>   <!-- updateTask(editedTask.value, i) -->
             <span (click)= "deleteTask(i)" style="float:right"> X </span>
@@ -54,16 +54,20 @@ import {Component} from "@angular/core";
 
 export class AppComponent {
 
-  lists= ["Task1","Task2","Task3"];
+  lists: Task[] = [new Task("Task 1"), new Task("Task 2"), new Task("Task 3")]
 
-  showBox:boolean=false;
+  // ["Task1","Task2","Task3"];
+
+
+  // showBox:boolean=false;
 
   addTask(task: string){
+    const newTask : Task = new Task(task);
     console.log(task);
     if(task){
-      this.lists.push(task)
+      this.lists.push(newTask);
     }
-    console.log(task);
+    console.log(this.lists);
   }
 
   deleteTask(index:number){
@@ -74,19 +78,19 @@ export class AppComponent {
     return !this.lists.length;
   }
 
-  showEditbox(index:number){
-      if(this.showBox){
-        this.showBox = false;
-      }else{
-        this.showBox = true;
-      }
-    return this.showBox;
-  }
+  // showEditbox(index:number){
+  //     if(this.showBox){
+  //       this.showBox = false;
+  //     }else{
+  //       this.showBox = true;
+  //     }
+  //   return this.showBox;
+  // }
 
   updateTask (task, index){
-      console.log(task,this.lists[index]);
+      console.log(task.title,this.lists[index].title);
       if(task){
-        this.lists[index] = task;
+        this.lists[index].title = task.title;
       }
     }
 

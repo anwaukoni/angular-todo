@@ -1,8 +1,10 @@
 export class Task{
-  constructor(public title: string, public description : string, public date:String){
+  public showEditBox : boolean;
+
+
+  constructor(public title: string){
     this.title = title;
-    this.description = description;
-    this.date = date;
+    this.showEditBox = false;
   }
 
 }
