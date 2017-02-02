@@ -13,10 +13,10 @@ import {Task} from "./task";
     </header>
       <nav class="navbar navbar-inverse col-sm-3 todoListNav" [class.invisible]="listEmpty()">
         <ul class="list-group" style="margin-top:1em">
-          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index"  >
+          <li style="cursor:pointer" class="list-group-item" *ngFor="let list of lists; let i = index">
             {{list.title}}
-            <div *ngIf="showBox">
-            <input  type="text"  [(ngModel)]="myModel" #editedTask="ngModel" placeholder="{{list.title}}" />
+            <div *ngIf="list.showBox">
+            <input  type="text" #editedTask="ngModel" [(ngModel)]="list.title" />
             </div>
             <span (click)="showEditbox(i)">Update </span>   <!-- updateTask(editedTask.value, i) -->
             <span (click)= "deleteTask(i)" style="float:right"> X </span>
@@ -56,11 +56,6 @@ export class AppComponent {
 
   lists: Task[] = [new Task("Task 1"), new Task("Task 2"), new Task("Task 3")]
 
-  // ["Task1","Task2","Task3"];
-
-
-  // showBox:boolean=false;
-
   addTask(task: string){
     const newTask : Task = new Task(task);
     console.log(task);
@@ -78,14 +73,15 @@ export class AppComponent {
     return !this.lists.length;
   }
 
-  // showEditbox(index:number){
-  //     if(this.showBox){
-  //       this.showBox = false;
-  //     }else{
-  //       this.showBox = true;
-  //     }
-  //   return this.showBox;
-  // }
+  showEditbox(index:number){
+      if(this.lists[index].showBox){
+        this.lists[index].showBox = false;
+      }else{
+        this.lists[index].showBox= true;
+      }
+    return this.lists[index].showBox;
+
+  }
 
   updateTask (task, index){
       console.log(task.title,this.lists[index].title);

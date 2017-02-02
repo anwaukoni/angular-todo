@@ -1,10 +1,10 @@
 export class Task{
-  public showEditBox : boolean;
+  public showBox : boolean;
 
 
   constructor(public title: string){
     this.title = title;
-    this.showEditBox = false;
+    this.showBox = false;
   }
 
 }
